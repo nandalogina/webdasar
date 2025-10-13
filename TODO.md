@@ -1,0 +1,22 @@
+# TODO List for PHP Web System with Authentication and CRUD
+
+- [x] Create config/database.php: Set up PDO connection to MySQL database.
+- [x] Create includes/auth.php: Implement session-based authentication functions (login, register, logout, check_login).
+- [x] Create includes/functions.php: Implement CRUD functions for users (create_user, get_users, get_user, update_user, delete_user).
+- [x] Create includes/header.php: Create HTML header with navigation menu.
+- [x] Create includes/footer.php: Create HTML footer.
+- [x] Create index.php: Entry point; redirect to dashboard if logged in, else login.
+- [x] Create pages/login.php: Login form with validation.
+- [x] Create pages/register.php: Registration form with validation.
+- [x] Create pages/dashboard.php: Welcome dashboard for logged-in users.
+- [x] Create pages/users.php: Users management page with list, add, edit, delete functionality.
+- [x] Create pages/profile.php: User profile edit page.
+- [x] Create pages/logout.php: Logout script.
+- [x] Create assets/css/style.css: Basic responsive CSS styling for a clean design.
+- [x] Create assets/js/script.js: Basic JavaScript for form validation or interactions.
+- [x] Initialize Git repository.
+- [ ] Add files to Git.
+- [ ] Commit changes.
+- [ ] Create GitHub repository (user needs to provide repo name or handle manually).
+- [ ] Push to GitHub.
+- [ ] Provide GitHub link.
