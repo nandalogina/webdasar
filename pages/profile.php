@@ -3,7 +3,7 @@ require_once '../includes/auth.php';
 require_once '../includes/functions.php';
 require_login();
 
-$user = get_current_user();
+$user = get_logged_in_user();
 $message = '';
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -13,7 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         if (update_profile($user['id'], $username, $email)) {
             $message = "Profile updated successfully.";
-            $user = get_current_user(); // Refresh user data
+            $user = get_logged_in_user(); // Refresh user data
         } else {
             $message = "Failed to update profile.";
         }

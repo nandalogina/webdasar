@@ -15,8 +15,8 @@
 - [x] Create assets/css/style.css: Basic responsive CSS styling for a clean design.
 - [x] Create assets/js/script.js: Basic JavaScript for form validation or interactions.
 - [x] Initialize Git repository.
-- [ ] Add files to Git.
-- [ ] Commit changes.
+- [x] Add files to Git.
+- [x] Commit changes.
 - [ ] Create GitHub repository (user needs to provide repo name or handle manually).
 - [ ] Push to GitHub.
 - [ ] Provide GitHub link.

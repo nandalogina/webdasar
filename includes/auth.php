@@ -9,7 +9,7 @@ function is_logged_in() {
 }
 
 // Function to get current user
-function get_current_user() {
+function get_logged_in_user() {
     if (!is_logged_in()) {
         return null;
     }
