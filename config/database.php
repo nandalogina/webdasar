@@ -1,15 +1,21 @@
-<?php
-// Database configuration
-$host = 'localhost';
-$dbname = 'web_dasar';
-$username = 'root'; // Default XAMPP MySQL username
-$password = ''; // Default XAMPP MySQL password (empty)
+ <?php
+class Database {
+    private $host = "localhost";
+    private $db_name = "auth_crud_system";
+    private $username = "root";
+    private $password = "";
+    public $conn;
 
-try {
-    $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $username, $password);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
-} catch (PDOException $e) {
-    die("Database connection failed: " . $e->getMessage());
+    public function getConnection() {
+        $this->conn = null;
+        try {
+            $this->conn = new PDO("mysql:host=" . $this->host . ";dbname=" . $this->db_name, $this->username, $this->password);
+            $this->conn->exec("set names utf8");
+            $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        } catch(PDOException $exception) {
+            echo "Connection error: " . $exception->getMessage();
+        }
+        return $this->conn;
+    }
 }
 ?>

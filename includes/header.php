@@ -1,28 +1,43 @@
+ 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Web Dasar - PHP Authentication & CRUD</title>
-    <link rel="stylesheet" href="../assets/css/style.css">
+    <title>PHP Auth CRUD System</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="assets/css/style.css" rel="stylesheet">
 </head>
 <body>
-    <header>
-        <nav>
-            <div class="container">
-                <h1>Web Dasar</h1>
-                <ul>
-                    <?php if (is_logged_in()): ?>
-                        <li><a href="../pages/dashboard.php">Dashboard</a></li>
-                        <li><a href="../pages/users.php">Users</a></li>
-                        <li><a href="../pages/profile.php">Profile</a></li>
-                        <li><a href="../pages/logout.php">Logout</a></li>
-                    <?php else: ?>
-                        <li><a href="../pages/login.php">Login</a></li>
-                        <li><a href="../pages/register.php">Register</a></li>
-                    <?php endif; ?>
+    <?php if(isset($_SESSION['logged_in']) && $_SESSION['logged_in']): ?>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="dashboard.php">
+                <i class="fas fa-tachometer-alt"></i> Dashboard
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+           <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="dashboard.php"><i class="fas fa-tachometer-alt me-1"></i> Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="profile.php"><i class="fas fa-user me-1"></i> Profile</a>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="users.php"><i class="fas fa-users me-1"></i> Manage Users</a>
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a class="nav-link" href="logout.php"><i class="fas fa-sign-out-alt me-1"></i> Logout</a>
+                    </li>
                 </ul>
             </div>
-        </nav>
-    </header>
-    <main class="container">
+        </div>
+    </nav>
+    <?php endif; ?>
+    <div class="container mt-4">

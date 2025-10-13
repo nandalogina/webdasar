@@ -1,68 +1,50 @@
-// Basic form validation
-document.addEventListener('DOMContentLoaded', function () {
-  // Password confirmation validation for registration
-  const registerForm = document.querySelector('form[action*="register"]')
-  if (registerForm) {
-    registerForm.addEventListener('submit', function (e) {
-      const password = document.getElementById('password').value
-      const confirmPassword = document.getElementById('confirm_password').value
+ 
+// Form validation and interactive features
+document.addEventListener('DOMContentLoaded', function() {
+    // Auto-hide alerts after 5 seconds
+    const alerts = document.querySelectorAll('.alert');
+    alerts.forEach(alert => {
+        setTimeout(() => {
+            alert.style.opacity = '0';
+            setTimeout(() => {
+                if(alert.parentNode) {
+                    alert.parentNode.removeChild(alert);
+                }
+            }, 300);
+        }, 5000);
+    });
 
-      if (password !== confirmPassword) {
-        alert('Passwords do not match!')
-        e.preventDefault()
-        return false
-      }
+    // Password confirmation validation
+    const passwordForm = document.querySelector('form');
+    if(passwordForm) {
+        const passwordInput = passwordForm.querySelector('input[name="password"]');
+        const confirmPasswordInput = passwordForm.querySelector('input[name="confirm_password"]');
+        
+        if(passwordInput && confirmPasswordInput) {
+            confirmPasswordInput.addEventListener('input', function() {
+                if(passwordInput.value !== confirmPasswordInput.value) {
+                    confirmPasswordInput.setCustomValidity('Passwords do not match');
+                } else {
+                    confirmPasswordInput.setCustomValidity('');
+                }
+            });
+        }
+    }
 
-      if (password.length < 6) {
-        alert('Password must be at least 6 characters long!')
-        e.preventDefault()
-        return false
-      }
-    })
-  }
+    // Add loading state to buttons
+    const forms = document.querySelectorAll('form');
+    forms.forEach(form => {
+        form.addEventListener('submit', function() {
+            const submitBtn = this.querySelector('button[type="submit"]');
+            if(submitBtn) {
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Loading...';
+                submitBtn.disabled = true;
+            }
+        });
+    });
+});
 
-  // Password change validation for profile
-  const profileForm = document.querySelector('form[action*="profile"]')
-  if (profileForm) {
-    profileForm.addEventListener('submit', function (e) {
-      const newPassword = document.getElementById('new_password').value
-      const confirmPassword = document.getElementById('confirm_password').value
-
-      if (newPassword && newPassword !== confirmPassword) {
-        alert('New passwords do not match!')
-        e.preventDefault()
-        return false
-      }
-
-      if (newPassword && newPassword.length < 6) {
-        alert('New password must be at least 6 characters long!')
-        e.preventDefault()
-        return false
-      }
-    })
-  }
-
-  // Confirm delete action
-  const deleteLinks = document.querySelectorAll('a[href*="delete"]')
-  deleteLinks.forEach((link) => {
-    link.addEventListener('click', function (e) {
-      if (!confirm('Are you sure you want to delete this user?')) {
-        e.preventDefault()
-        return false
-      }
-    })
-  })
-
-  // Simple email validation
-  const emailInputs = document.querySelectorAll('input[type="email"]')
-  emailInputs.forEach((input) => {
-    input.addEventListener('blur', function () {
-      const email = this.value
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-      if (email && !emailRegex.test(email)) {
-        alert('Please enter a valid email address.')
-        this.focus()
-      }
-    })
-  })
-})
+// Confirm delete function
+function confirmDelete() {
+    return confirm('Are you sure you want to delete this item? This action cannot be undone.');
+}
